@@ -1,12 +1,20 @@
-require('dotenv').config();
+require("dotenv").config();
 
 import express from "express";
-import userRoter from "./routers/user";
+import userRouter from "./routers/user";
+import bodyParser from "body-parser";
+
+import { dbconnection } from "./config/db";
 
 const app = express();
 
-app.use("/v1/user", userRoter);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+dbconnection();
+
+app.use("/v1/user", userRouter);
 
 app.listen(process.env.PORT, () => {
-    console.log("server is runnig ", process.env.PORT);
+  console.log("server is runnig ", process.env.PORT);
 });
