@@ -7,14 +7,19 @@ const authMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { name, email } = req.body;
+  const { name, email, phoneNumber } = req.body;
 
   try {
-    const user = await User.findOne({ email });
-    console.log(user);
-    if (user) {
-      res.status(400).json({
-        message: "Email Id is already singedin..!",
+    const userEmail = await User.findOne({ email });
+    const userPhoneNumber = await User.findOne({ phoneNumber });
+    
+    if (userEmail) {
+      res.status(401).json({
+        message: "Email Id is already Used..!",
+      });
+    } else if(userPhoneNumber) {
+      res.status(401).json({
+        message: "Phone Number is already Used..!",
       });
     } else {
       next();

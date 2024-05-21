@@ -6,10 +6,10 @@ import User from "../models/userModel";
 const router = Router();
 
 router.post("/signin", authMiddleware, (req: Request, res: Response) => {
-  const { name, email } = req.body;
+  const { name, email, phoneNumber, password } = req.body;
 
   const user = new User({
-    name, email
+    name, email, phoneNumber, password, 
   });
 
   user.save().then((savedUser) => {
