@@ -8,23 +8,25 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    email: {
+    lastName: {
+        type: String,
+        required: true,
+    },
+    photoUrl: {
         type: String,
         required: true,
         unique: true,
     },
-    phoneNumber: {
+    authDate: {
         type: String,
         required: true,
-        unique: true,
     },
-    password: {
+    chatID: {
         type: String,
         required: true,
     }
 });
 
-const User = mongoose.model('User', userSchema);
+const UserModel = mongoose.model('User', userSchema);
 
-export default User;
-
+export default UserModel;

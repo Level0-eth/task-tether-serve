@@ -1,25 +1,29 @@
 import { Request, Response, NextFunction } from "express";
 
-import User from "../models/userModel";
+import UserModel from "../models/userModel";
+import { User } from "../types/user";
 
 const authMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { name, email, phoneNumber } = req.body;
+  const { chatID } : User = req.body;
+
+  if(!chatID) {
+    res.status(409).json({
+      message: "Please Provide User Id",
+    });
+
+    return;
+  }
 
   try {
-    const userEmail = await User.findOne({ email });
-    const userPhoneNumber = await User.findOne({ phoneNumber });
+    const isIdPresent = await UserModel.findOne({ chatID });
     
-    if (userEmail) {
-      res.status(401).json({
-        message: "Email Id is already Used..!",
-      });
-    } else if(userPhoneNumber) {
-      res.status(401).json({
-        message: "Phone Number is already Used..!",
+    if(isIdPresent) {
+      res.status(409).json({
+        message: "User Is already Availble",
       });
     } else {
       next();
