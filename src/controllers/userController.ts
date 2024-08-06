@@ -3,10 +3,11 @@ import { Request, Response } from "express";
 import UserModel from "../models/userModel";
 import { User } from "../types/user";
 
-export const userController = (req: Request, res: Response) => {
-  const { name, lastName, photoUrl, authDate, chatID }: User = req.body;
+export const singupController = (req: Request, res: Response) => {
+  const { userId, name, lastName, photoUrl, authDate, chatID }: User = req.body;
 
   const user = new UserModel({
+    userId,
     name,
     lastName,
     photoUrl,

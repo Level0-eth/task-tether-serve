@@ -8,9 +8,9 @@ const authMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { chatID } : User = req.body;
+  const { userId } : User = req.body;
 
-  if(!chatID) {
+  if(!userId) {
     res.status(409).json({
       message: "Please Provide User Id",
     });
@@ -19,11 +19,11 @@ const authMiddleware = async (
   }
 
   try {
-    const isIdPresent = await UserModel.findOne({ chatID });
+    const isIdPresent = await UserModel.findOne({ userId });
     
     if(isIdPresent) {
       res.status(409).json({
-        message: "User Is already Availble",
+        message: "User Is already Present",
       });
     } else {
       next();

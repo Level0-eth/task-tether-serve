@@ -3,6 +3,7 @@ require("dotenv").config();
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import userRoute from "./routes/userRoute";
 import { dbconnection } from "./config/db";
@@ -16,6 +17,7 @@ const corsOptions = {
   credentials: true
 };
 
+app.use(cookieParser());
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
