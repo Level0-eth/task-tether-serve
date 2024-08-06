@@ -11,12 +11,12 @@ router.post("/singup", authMiddleware, singupController);
 router.get("/getUser", (req: Request, res: Response) => {
   const { userId } = req.body;
 
-  UserModel.findOne({ userId,})
+  UserModel.findOne({ userId })
     .then((data) => {
-      if(data) {
+      if (data) {
         res.status(200).json({
-            message: "user is already exits",
-          });
+          message: "user is already exits",
+        });
       }
     })
     .catch((err) => {
