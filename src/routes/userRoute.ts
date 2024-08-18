@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 
 import { authMiddleware } from "../middlewares/auth";
-import { singupController } from "../controllers/userController";
+import { singupController, loginController } from "../controllers/userController";
 import UserModel from "../models/userModel";
 
 const router = Router();
@@ -24,6 +24,6 @@ router.post("/getUser", async (req: Request, res: Response) => {
   }
 });
 
-// router.post("/login", authMiddleware, userController);
+router.post("/login", loginController);
 
 export default router;

@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     chatID: {
         type: String,
         required: true,
+    },
+    password: {
+        type: String,
+        required: true,
     }
 });
 

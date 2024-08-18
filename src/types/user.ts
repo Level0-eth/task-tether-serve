@@ -1,8 +1,9 @@
 export interface User {
-    userId: String,
-    name: String,
-    lastName: String,
-    photoUrl: String,
-    authDate: String,
-    chatID: String,
+    userId: string;
+    name: string;
+    lastName: string;
+    photoUrl: string;
+    authDate: string;
+    chatID: string;
+    password: string;
 }
