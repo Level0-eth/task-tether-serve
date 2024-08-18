@@ -6,7 +6,7 @@ import UserModel from "../models/userModel";
 
 const router = Router();
 
-router.post("/singup", authMiddleware, singupController);
+router.post("/signup", authMiddleware, singupController);
 
 router.post("/getUser", async (req: Request, res: Response) => {
   const { userId } = req.body;
