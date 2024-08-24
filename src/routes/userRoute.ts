@@ -23,7 +23,7 @@ router.post("/getUser", async (req: Request, res: Response) => {
       message: "user is already exits",
     });
   } else {
-    res.status(409).json({
+    res.status(200).json({
       message: "user not found",
     });
   }
