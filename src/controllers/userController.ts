@@ -55,6 +55,7 @@ export const loginController = async (req: Request, res: Response) => {
   if (match) {
     const token = jwt.sign(
       {
+        id: user._id,
         userId: user.userId,
         name: user.name,
         lastName: user.lastName,
