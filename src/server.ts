@@ -6,6 +6,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import userRoute from "./routes/userRoute";
+import listRoute from "./routes/listRoute";
 import { dbconnection } from "./config/db";
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/v1/user", userRoute);
+app.use("/v1/list", listRoute);
 
 const startServer = async () => {
   await dbconnection();

@@ -1,5 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
+import ListModel, { listSchema } from "./listModel";
+
 const userSchema = new mongoose.Schema({
     id: {
         type: Schema.ObjectId
@@ -32,7 +34,8 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    lists: [listSchema]
 });
 
 const UserModel = mongoose.model('User', userSchema);
