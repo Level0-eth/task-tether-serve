@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 
 import UserModel from "../models/userModel";
 import { User } from "../types/user";
+import bot from "../config/bot";
 
 export const singupController = async (req: Request, res: Response) => {
   const { userId, name, lastName, photoUrl, authDate, chatID, password }: User =
@@ -65,6 +66,8 @@ export const loginController = async (req: Request, res: Response) => {
         expiresIn: "1h",
       }
     );
+    
+    bot.sendMessage(user.chatID, "Your are loggedin..!");
 
     res.send({
       token: token,
