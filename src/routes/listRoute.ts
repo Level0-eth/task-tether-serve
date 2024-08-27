@@ -19,13 +19,10 @@ router.post(
 
       await list.save();
 
-      const a = await UserModel.findByIdAndUpdate(
-        currentUser._id,
-        { $push: { lists: list } },
-        { new: true }
+      await UserModel.updateOne(
+        { id: currentUser._id },
+        { $push: { lists: list } }
       );
-
-      console.log("update is done ", a);
     } catch {
       console.log("error while creating the list");
     }
