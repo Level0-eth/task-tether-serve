@@ -17,11 +17,11 @@ router.post(
         list_name: "test",
       });
 
-      await list.save();
+      const doc = await list.save();
 
       await UserModel.updateOne(
         { id: currentUser._id },
-        { $push: { lists: list } }
+        { $push: { lists: doc._id } }
       );
     } catch {
       console.log("error while creating the list");
