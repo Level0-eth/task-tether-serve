@@ -64,10 +64,10 @@ export const loginController = async (req: Request, res: Response) => {
       },
       process.env.JWT_SECRET as string,
       {
-        expiresIn: "1h",
+        expiresIn: "1d",
       }
     );
-    
+
     bot.sendMessage(user.chatID, "Your are loggedin..!");
 
     res.send({
@@ -77,6 +77,38 @@ export const loginController = async (req: Request, res: Response) => {
   } else {
     res.status(409).json({
       message: "bhai password galat hai",
+    });
+  }
+};
+
+export const getUserController = async (req: Request, res: Response) => {
+  const { userId } = req.body;
+
+  let data = await UserModel.findOne({ userId });
+
+  if (data) {
+    res.status(200).json({
+      message: "user is already exits",
+    });
+  } else {
+    res.status(200).json({
+      message: "user not found",
+    });
+  }
+};
+
+export const getInfo = async (req: Request, res: Response) => {
+  const auth = req.headers.authorization;
+  const token = auth?.split("Bearer ")[1];
+
+  try {
+    const match = jwt.verify(token as string, process.env.JWT_SECRET as string);
+    res.json({
+      match,
+    });
+  } catch {
+    res.status(409).json({
+      message: "token expired",
     });
   }
 };
