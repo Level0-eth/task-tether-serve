@@ -64,7 +64,7 @@ export const loginController = async (req: Request, res: Response) => {
       },
       process.env.JWT_SECRET as string,
       {
-        expiresIn: "1h",
+        expiresIn: "1d",
       }
     );
     
