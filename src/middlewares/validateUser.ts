@@ -9,7 +9,6 @@ const validateUser = async (
   const auth = req.headers.authorization;
   const token = auth?.split("Bearer ")[1];
 
-  console.log(token);
   if (!token) {
     res.status(409).json({
       message: "auth token is missing",
