@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 
 import userRoute from "./routes/userRoute";
 import listRoute from "./routes/listRoute";
+import taskRoute from "./routes/taskRoute";
 import { dbconnection } from "./config/db";
 
 const app = express();
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/v1/user", userRoute);
 app.use("/v1/list", listRoute);
+app.use("/v1/task", taskRoute);
 
 const startServer = async () => {
   await dbconnection();
