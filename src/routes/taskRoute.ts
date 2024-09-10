@@ -107,4 +107,35 @@ router.post(
   }
 );
 
+router.post(
+  "/getTask/:id",
+  validateUser,
+  async (req: Request, res: Response) => {
+    const { user } = req.body;
+    const listId = req.params.id;
+
+    try {
+      const doc = await UserModel.findOne({
+        _id: user.id,
+      });
+
+      const taskIds = doc?.lists.find((list) => list._id?.toString() == listId);
+
+      const tasks = await TaskModel.find({
+        _id: { $in: taskIds?.tasks },
+      });
+
+      res.status(200).json({
+        data: tasks,
+        message: "Here is your tasks."
+      });
+    } catch {
+      res.status(200).json({
+        data: null,
+        message: "Failed to fetch list."
+      });
+    }
+  }
+);
+
 export default router;
