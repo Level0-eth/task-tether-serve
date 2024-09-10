@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import mongoose from "mongoose";
 
-import TaskModel from "../models/TaskModel";
+import TaskModel from "../models/taskModel";
 import UserModel from "../models/userModel";
 import validateUser from "../middlewares/validateUser";
 
